@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>StudyHub | Study Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+</head>
+
+<body>
+
+<!-- =========================
+     SIDEBAR
+========================= -->
+
+<aside class="sidebar">
+
+    <div class="logo">
+        <i class="fa-solid fa-graduation-cap"></i>
+        <span>StudyHub</span>
+    </div>
+
+    <nav>
+        <button class="nav-btn active" data-section="dashboard">
+            <i class="fa-solid fa-house"></i>
+            Dashboard
+        </button>
+
+        <button class="nav-btn" data-section="tasks">
+            <i class="fa-solid fa-list-check"></i>
+            Tasks
+        </button>
+
+        <button class="nav-btn" data-section="timer">
+            <i class="fa-solid fa-clock"></i>
+            Study Timer
+        </button>
+
+        <button class="nav-btn" data-section="flashcards">
+            <i class="fa-solid fa-layer-group"></i>
+            Flashcards
+        </button>
+
+        <button class="nav-btn" data-section="quiz">
+            <i class="fa-solid fa-brain"></i>
+            Quiz
+        </button>
+    </nav>
+
+    <button id="themeToggle" class="theme-btn">
+        <i class="fa-solid fa-moon"></i>
+        Dark Mode
+    </button>
+
+</aside>
+
+
+<!-- =========================
+     MAIN CONTENT
+========================= -->
+
+<main class="main">
+
+    <!-- DASHBOARD -->
+
+    <section id="dashboard" class="section active">
+
+        <div class="topbar">
+
+            <div>
+                <p class="small-text">Welcome back 👋</p>
+                <h1>Ready to study?</h1>
+            </div>
+
+            <div class="date" id="currentDate"></div>
+
+        </div>
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats">
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-book"></i>
+                </div>
+
+                <div>
+                    <p>Subjects</p>
+                    <h2>5</h2>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-check"></i>
+                </div>
+
+                <div>
+                    <p>Tasks Done</p>
+                    <h2 id="completedCount">0</h2>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-fire"></i>
+                </div>
+
+                <div>
+                    <p>Study Streak</p>
+                    <h2 id="streak">1 day</h2>
+                </div>
+            </div>
+
+
+            <div class="stat-card">
+                <div class="stat-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+
+                <div>
+                    <p>Progress</p>
+                    <h2 id="progressPercent">0%</h2>
+                </div>
+            </div>
+
+        </div>
+
+
+        <!-- SUBJECTS -->
+
+        <div class="content-grid">
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h2>My Subjects</h2>
+                    <button class="text-button">View All</button>
+                </div>
+
+
+                <div class="subjects">
+
+                    <div class="subject">
+                        <div class="subject-icon math">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+
+                        <div>
+                            <h3>Mathematics</h3>
+                            <p>Functions & Trigonometry</p>
+
+                            <div class="progress-bar">
+                                <span style="width: 70%"></span>
+                            </div>
+                        </div>
+
+                        <strong>70%</strong>
+                    </div>
+
+
+                    <div class="subject">
+                        <div class="subject-icon science">
+                            <i class="fa-solid fa-flask"></i>
+                        </div>
+
+                        <div>
+                            <h3>Science</h3>
+                            <p>Physics & Chemistry</p>
+
+                            <div class="progress-bar">
+                                <span style="width: 45%"></span>
+                            </div>
+                        </div>
+
+                        <strong>45%</strong>
+                    </div>
+
+
+                    <div class="subject">
+                        <div class="subject-icon programming">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+
+                        <div>
+                            <h3>Programming</h3>
+                            <p>JavaScript & Web Development</p>
+
+                            <div class="progress-bar">
+                                <span style="width: 60%"></span>
+                            </div>
+                        </div>
+
+                        <strong>60%</strong>
+                    </div>
+
+
+                    <div class="subject">
+                        <div class="subject-icon english">
+                            <i class="fa-solid fa-book-open"></i>
+                        </div>
+
+                        <div>
+                            <h3>English</h3>
+                            <p>Writing & Literature</p>
+
+                            <div class="progress-bar">
+                                <span style="width: 80%"></span>
+                            </div>
+                        </div>
+
+                        <strong>80%</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="panel">
+
+                <div class="panel-header">
+                    <h2>Quick Study</h2>
+                </div>
+
+                <div class="quick-actions">
+
+                    <button onclick="openSection('timer')" class="action-card">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Start Timer</span>
+                    </button>
+
+                    <button onclick="openSection('flashcards')" class="action-card">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <span>Flashcards</span>
+                    </button>
+
+                    <button onclick="openSection('quiz')" class="action-card">
+                        <i class="fa-solid fa-brain"></i>
+                        <span>Take Quiz</span>
+                    </button>
+
+                    <button onclick="openSection('tasks')" class="action-card">
+                        <i class="fa-solid fa-plus"></i>
+                        <span>Add Task</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         TASKS
+    ========================= -->
+
+    <section id="tasks" class="section">
+
+        <div class="section-title">
+            <div>
+                <p class="small-text">Stay organized</p>
+                <h1>Study Tasks</h1>
+            </div>
+        </div>
+
+
+        <div class="task-input">
+
+            <input
+                type="text"
+                id="taskInput"
+                placeholder="What do you need to study?"
+            >
+
+            <select id="taskSubject">
+                <option>Mathematics</option>
+                <option>Science</option>
+                <option>Programming</option>
+                <option>English</option>
+            </select>
+
+            <button onclick="addTask()">
+                <i class="fa-solid fa-plus"></i>
+                Add Task
+            </button>
+
+        </div>
+
+
+        <div id="taskList" class="task-list"></div>
+
+    </section>
+
+
+
+    <!-- =========================
+         TIMER
+    ========================= -->
+
+    <section id="timer" class="section">
+
+        <div class="section-title">
+            <div>
+                <p class="small-text">Focus mode</p>
+                <h1>Pomodoro Timer</h1>
+            </div>
+        </div>
+
+
+        <div class="timer-container">
+
+            <div class="timer-circle">
+
+                <div>
+                    <span id="timerDisplay">25:00</span>
+                    <p id="timerStatus">Ready to study</p>
+                </div>
+
+            </div>
+
+
+            <div class="timer-buttons">
+
+                <button onclick="startTimer()" class="primary-btn">
+                    <i class="fa-solid fa-play"></i>
+                    Start
+                </button>
+
+                <button onclick="pauseTimer()" class="secondary-btn">
+                    <i class="fa-solid fa-pause"></i>
+                    Pause
+                </button>
+
+                <button onclick="resetTimer()" class="secondary-btn">
+                    <i class="fa-solid fa-rotate"></i>
+                    Reset
+                </button>
+
+            </div>
+
+
+            <div class="timer-presets">
+
+                <button onclick="setTimer(25)">25 min</button>
+                <button onclick="setTimer(50)">50 min</button>
+                <button onclick="setTimer(5)">5 min break</button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FLASHCARDS
+    ========================= -->
+
+    <section id="flashcards" class="section">
+
+        <div class="section-title">
+            <div>
+                <p class="small-text">Active recall</p>
+                <h1>Flashcards</h1>
+            </div>
+        </div>
+
+
+        <div class="flashcard-area">
+
+            <div
+                class="flashcard"
+                id="flashcard"
+                onclick="flipCard()"
+            >
+
+                <div class="flashcard-front">
+                    <span id="cardCategory">Mathematics</span>
+                    <h2 id="cardQuestion">
+                        What is the quadratic formula?
+                    </h2>
+
+                    <p>Click to reveal answer</p>
+                </div>
+
+
+                <div class="flashcard-back">
+
+                    <span>Answer</span>
+
+                    <h2 id="cardAnswer">
+                        x = (-b ± √(b² - 4ac)) / 2a
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="flashcard-controls">
+
+                <button onclick="previousCard()">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+
+                <span id="cardCounter">1 / 5</span>
+
+                <button onclick="nextCard()">
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         QUIZ
+    ========================= -->
+
+    <section id="quiz" class="section">
+
+        <div class="section-title">
+            <div>
+                <p class="small-text">Test yourself</p>
+                <h1>Quick Quiz</h1>
+            </div>
+        </div>
+
+
+        <div class="quiz-container">
+
+            <div class="quiz-progress">
+
+                <span id="quizQuestionNumber">
+                    Question 1 of 5
+                </span>
+
+                <div class="quiz-progress-bar">
+                    <span id="quizProgress"></span>
+                </div>
+
+            </div>
+
+
+            <h2 id="quizQuestion">
+                What is 2 + 2?
+            </h2>
+
+
+            <div id="quizAnswers" class="quiz-answers"></div>
+
+
+            <button
+                id="nextQuestionBtn"
+                class="primary-btn hidden"
+                onclick="nextQuestion()"
+            >
+                Next Question
+            </button>
+
+
+            <div id="quizResult" class="quiz-result hidden"></div>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
